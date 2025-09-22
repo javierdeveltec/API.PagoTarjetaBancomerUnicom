@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.PagoTarjetaBancomer", "API.PagoTarjetaBancomer.csproj", "{28764E6D-F8CB-4259-BBF2-83B0265BACDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28764E6D-F8CB-4259-BBF2-83B0265BACDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28764E6D-F8CB-4259-BBF2-83B0265BACDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28764E6D-F8CB-4259-BBF2-83B0265BACDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28764E6D-F8CB-4259-BBF2-83B0265BACDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {952E0EDA-9C27-444C-9A78-54B4FAD4A263}
+	EndGlobalSection
+EndGlobal

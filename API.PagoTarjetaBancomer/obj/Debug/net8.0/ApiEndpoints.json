@@ -1,0 +1,145 @@
+[
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "CancelacionDevolucion",
+    "RelativePath": "api/Pagos/cancelacion-devolucion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.CancelacionDevolucionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "CancelacionVenta",
+    "RelativePath": "api/Pagos/cancelacion-venta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.CancelacionVentaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "CargaLlaves",
+    "RelativePath": "api/Pagos/carga-llaves",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.CargaLlavesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "ConsultaPuntos",
+    "RelativePath": "api/Pagos/consulta-puntos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.ConsultaPuntosRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "Devolucion",
+    "RelativePath": "api/Pagos/devolucion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.DevolucionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "PostPropina",
+    "RelativePath": "api/Pagos/postpropina",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.PostPropinaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "Reversos",
+    "RelativePath": "api/Pagos/reversos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
+    "Method": "Venta",
+    "RelativePath": "api/Pagos/venta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.PagoTarjetaBancomer.Models.VentaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[API.PagoTarjetaBancomer.WeatherForecast, API.PagoTarjetaBancomer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
