@@ -454,11 +454,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer2\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer.csproj",
+      "projectUniqueName": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer.csproj",
       "projectName": "API.PagoTarjetaBancomer",
-      "projectPath": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer2\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer.csproj",
+      "projectPath": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer.csproj",
       "packagesPath": "C:\\Users\\javier.jimenez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer2\\API.PagoTarjetaBancomer\\obj\\",
+      "outputPath": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -492,7 +492,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -522,7 +522,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-rc.2.25502.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
