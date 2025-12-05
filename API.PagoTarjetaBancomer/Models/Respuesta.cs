@@ -23,6 +23,10 @@ namespace API.PagoTarjetaBancomer.Models
         public string CodigoError { get; set; }
         public object Datos { get; set; }      
         public DateTime Fecha { get; set; } = DateTime.UtcNow;
+        public string FolioHost { get; set; }
+        public string VoucherComercio { get; set; }
+        public string VoucherCliente { get; set; }
+        public string JsonOriginal { get; set; }
 
 
 

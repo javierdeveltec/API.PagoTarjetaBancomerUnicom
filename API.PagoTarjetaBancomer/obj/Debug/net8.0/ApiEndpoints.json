@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "ConfiguracionController",
+    "Method": "Get",
+    "RelativePath": "api/configuracion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConfiguracionController",
+    "Method": "Update",
+    "RelativePath": "api/configuracion",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "API.PagoTarjetaBancomer.Models.ConfiguracionPagoBBVA",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
     "Method": "CancelacionDevolucion",
     "RelativePath": "api/Pagos/cancelacion-devolucion",
@@ -81,22 +107,6 @@
   },
   {
     "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
-    "Method": "PostPropina",
-    "RelativePath": "api/Pagos/postpropina",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "API.PagoTarjetaBancomer.Models.PostPropinaRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.PagoTarjetaBancomer.Controllers.PagosController",
     "Method": "Reversos",
     "RelativePath": "api/Pagos/reversos",
     "HttpMethod": "GET",
@@ -119,6 +129,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.PagoTarjetaBancomer.Controllers.TestController",
+    "Method": "Get",
+    "RelativePath": "api/test/configuracion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

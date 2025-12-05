@@ -1,129 +1,217 @@
 ﻿using API.PagoTarjetaBancomer.Models;
-using API.PagoTarjetaBancomer.Services;
-
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 
 namespace API.PagoTarjetaBancomer.Services
 {
     public class PagoService : IPagoService
     {
-        private Random _rnd = new Random();
+        private readonly IConfiguracionService _cfgService;
+        private readonly HttpClient _http;
 
-        private string GenerarARQC() => $"ARQC{_rnd.Next(100000, 999999)}";
-        private string GenerarAID() => "A0000000041010";
-        private string GenerarTrack1(string tarjeta) => $"B{tarjeta}^CARDHOLDER/TEST^23051200000000000000";
-        private string GenerarTrack2(string tarjeta) => $"{tarjeta}=23051200000000000000";
-
-        public async Task<Respuesta> VentaAsync(VentaRequest request)
+        public PagoService(IConfiguracionService cfgService)
         {
-            return new Respuesta
-            {
-                Exito = true,
-                Mensaje = "Venta procesada correctamente",
-                Emisor = "POS",
-                ModoLectura = "Chip",
-                ARQC = GenerarARQC(),
-                AID = GenerarAID(),
-                Track1 = GenerarTrack1(request.Tarjeta),
-                Track2 = GenerarTrack2(request.Tarjeta),
-                Datos = request
-            };
+            _cfgService = cfgService;
+            _http = new HttpClient();
         }
 
-        public async Task<Respuesta> DevolucionAsync(DevolucionRequest request)
+        // ================================================================
+        // =====================   TOKEN   ================================
+        // ================================================================
+        private async Task<string> ObtenerTokenAsync(ConfiguracionPagoBBVA cfg)
         {
-            return new Respuesta
+            var body = new
             {
-                Exito = true,
-                Mensaje = "Devolución procesada",
-                Emisor = "POS",
-                ModoLectura = "Chip",
-                ARQC = GenerarARQC(),
-                AID = GenerarAID(),
-                Track1 = GenerarTrack1("4111111111111111"),
-                Track2 = GenerarTrack2("4111111111111111"),
-                Datos = request
+                afiliacion = cfg.ComercioAfiliacion,
+                terminal = cfg.ComercioTerminal,
+                clave = cfg.ClaveSecreta
             };
+
+            string json = JsonSerializer.Serialize(body);
+
+            var http = new HttpRequestMessage(HttpMethod.Post, cfg.TokenUrl);
+            http.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var res = await _http.SendAsync(http);
+            string resultJson = await res.Content.ReadAsStringAsync();
+
+            var parsed = JsonSerializer.Deserialize<JsonElement>(resultJson);
+
+            return parsed.GetProperty("token").GetString() ?? "";
         }
 
-        public async Task<Respuesta> CancelacionVentaAsync(CancelacionVentaRequest request)
+        // ================================================================
+        // ===============   MÉTODO GENÉRICO DE OPERACIÓN   ===============
+        // ================================================================
+        private async Task<Respuesta> EjecutarOperacion(string operacion, object payload)
         {
-            return new Respuesta
+            var cfg = await _cfgService.ObtenerAsync();
+            var token = await ObtenerTokenAsync(cfg);
+
+            var json = JsonSerializer.Serialize(payload);
+
+            var http = new HttpRequestMessage(HttpMethod.Post, cfg.HostUrl);
+            http.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            http.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var res = await _http.SendAsync(http);
+            var strResult = await res.Content.ReadAsStringAsync();
+
+            var parsed = JsonSerializer.Deserialize<JsonElement>(strResult);
+
+            // Mapeo genérico del SDK
+            var respuesta = new Respuesta
             {
-                Exito = true,
-                Mensaje = $"Venta {request.IdVenta} cancelada",
-                Emisor = "POS",
-                ModoLectura = "Chip",
-                Datos = request
+                Exito = parsed.TryGetProperty("resultado", out var pr) && pr.GetString() == "APROBADA",
+                Autorizacion = parsed.GetProperty("codAutorizacion").GetString(),
+                FolioHost = parsed.GetProperty("folioHost").GetString(),
+                Mensaje = parsed.GetProperty("mensaje").GetString(),
+                VoucherComercio = parsed.GetProperty("voucherComercio").GetString(),
+                VoucherCliente = parsed.GetProperty("voucherCliente").GetString(),
+                JsonOriginal = strResult
             };
+
+            return respuesta;
         }
 
-        public async Task<Respuesta> CancelacionDevolucionAsync(CancelacionDevolucionRequest request)
+        // ================================================================
+        // ======================  VENTA (NORMAL)  ========================
+        // ================================================================
+        public async Task<Respuesta> VentaAsync(VentaRequest req)
         {
-            return new Respuesta
+            var payload = new
             {
-                Exito = true,
-                Mensaje = $"Devolución {request.IdDevolucion} cancelada",
-                Emisor = "POS",
-                ModoLectura = "Chip",
-                Datos = request
+                // OPERACIÓN
+                operacion = "VENTA",
+                importe = req.Monto.ToString("F2"),
+                moneda = req.Moneda,
+                referencia = req.Referencia,
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal,
+                folioInterno = req.FolioInterno,
+                operador = req.Operador,
+
+                // DATOS TARJETA
+                pan = req.NumeroTarjeta,
+                fechaExp = req.FechaVencimiento,
+                cvv = req.Cvv,
+
+                // MODO LECTURA Y PISTAS
+                modoLectura = req.ModoLectura,
+                track1 = req.Track1,
+                track2 = req.Track2,
+
+                // EMV
+                aid = req.Aid,
+                arqc = req.Arqc,
+                emvData = req.Emv
             };
+
+            return await EjecutarOperacion("VENTA", payload);
         }
 
-        public async Task<Respuesta> PostPropinaAsync(PostPropinaRequest request)
+
+
+
+        // ================================================================
+        // =======================  DEVOLUCIÓN  ============================
+        // ================================================================
+        public async Task<Respuesta> DevolucionAsync(DevolucionRequest req)
         {
-            return new Respuesta
+            var payload = new
             {
-                Exito = true,
-                Mensaje = $"Propina de {request.MontoPropina:C} agregada a venta {request.IdVenta}",
-                Emisor = "POS",
-                ModoLectura = "Chip",
-                Datos = request
+                importe = req.Monto.ToString("F2"),
+                referencia = req.Referencia,
+                operacion = "DEVOLUCION",
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal,
+                folioInterno = req.FolioInterno,
+                operador = req.Operador
             };
+
+            return await EjecutarOperacion("DEVOLUCION", payload);
         }
 
-        public async Task<Respuesta> ConsultaPuntosAsync(ConsultaPuntosRequest request)
+        // ================================================================
+        // =================== CANCELACIÓN DE VENTA ========================
+        // ================================================================
+        public async Task<Respuesta> CancelacionVentaAsync(CancelacionVentaRequest req)
         {
-            int puntos = _rnd.Next(0, 5000);
-            return new Respuesta
+            var payload = new
             {
-                Exito = true,
-                Mensaje = "Consulta de puntos exitosa",
-                Emisor = "POS",
-                ModoLectura = "Manual",
-                Datos = new { PuntosDisponibles = puntos, Tarjeta = request.Tarjeta }
+                operacion = "CANCELACION_VENTA",
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal,
+                folioInterno = req.FolioInterno,
+                operador = req.Operador,
+                autorizacion = req.Autorizacion
             };
+
+            return await EjecutarOperacion("CANCELACION_VENTA", payload);
         }
 
-        public async Task<Respuesta> CargaLlavesAsync(CargaLlavesRequest request)
+        // ================================================================
+        // ============= CANCELACIÓN DE DEVOLUCIÓN =========================
+        // ================================================================
+        public async Task<Respuesta> CancelacionDevolucionAsync(CancelacionDevolucionRequest req)
         {
-            return new Respuesta
+            var payload = new
             {
-                Exito = true,
-                Mensaje = "Llaves cargadas correctamente",
-                Emisor = "POS",
-                ModoLectura = "Automático",
-                Datos = request
+                operacion = "CANCELACION_DEVOLUCION",
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal,
+                folioInterno = req.FolioInterno,
+                operador = req.Operador,
+                autorizacion = req.Autorizacion
             };
+
+            return await EjecutarOperacion("CANCELACION_DEVOLUCION", payload);
         }
 
+
+        // ================================================================
+        // ===================== CONSULTA PUNTOS ===========================
+        // ================================================================
+        public async Task<Respuesta> ConsultaPuntosAsync(ConsultaPuntosRequest req)
+        {
+            var payload = new
+            {
+                operacion = "CONSULTA_PUNTOS",
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal
+            };
+
+            return await EjecutarOperacion("CONSULTA_PUNTOS", payload);
+        }
+
+        // ================================================================
+        // ===================== CARGA DE LLAVES ===========================
+        // ================================================================
+        public async Task<Respuesta> CargaLlavesAsync(CargaLlavesRequest req)
+        {
+            var payload = new
+            {
+                operacion = "CARGA_LLAVES",
+                afiliacion = req.Afiliacion,
+                terminal = req.Terminal
+            };
+
+            return await EjecutarOperacion("CARGA_LLAVES", payload);
+        }
+
+        // ================================================================
+        // ======================== REVERSOS ===============================
+        // ================================================================
         public async Task<Respuesta> ReversosAsync()
         {
-            var reversos = Enumerable.Range(1, 5).Select(i => new
+            var payload = new
             {
-                Id = $"REV{i:000}",
-                Monto = _rnd.Next(50, 500),
-                Fecha = DateTime.UtcNow.AddMinutes(-_rnd.Next(1, 1440)),
-                Estado = i % 2 == 0 ? "Pendiente" : "Procesado"
-            });
-
-            return new Respuesta
-            {
-                Exito = true,
-                Mensaje = "Listado de reversos simulados",
-                Emisor = "POS",
-                ModoLectura = "Automático",
-                Datos = reversos
+                operacion = "REVERSO"
             };
+
+            return await EjecutarOperacion("REVERSO", payload);
         }
     }
 }

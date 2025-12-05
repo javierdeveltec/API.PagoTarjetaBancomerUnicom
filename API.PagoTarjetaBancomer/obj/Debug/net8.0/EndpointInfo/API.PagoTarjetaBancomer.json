@@ -1,10 +1,51 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "API.PagoTarjetaBancomer",
     "version": "1.0"
   },
   "paths": {
+    "/api/configuracion": {
+      "get": {
+        "tags": [
+          "Configuracion"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Configuracion"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfiguracionPagoBBVA"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfiguracionPagoBBVA"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfiguracionPagoBBVA"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Pagos/venta": {
       "post": {
         "tags": [
@@ -129,37 +170,6 @@
         }
       }
     },
-    "/api/Pagos/postpropina": {
-      "post": {
-        "tags": [
-          "Pagos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostPropinaRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostPropinaRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostPropinaRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Pagos/consulta-puntos": {
       "post": {
         "tags": [
@@ -234,6 +244,18 @@
         }
       }
     },
+    "/api/test/configuracion": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -286,6 +308,26 @@
           "motivo": {
             "type": "string",
             "nullable": true
+          },
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "terminal": {
+            "type": "string",
+            "nullable": true
+          },
+          "operador": {
+            "type": "string",
+            "nullable": true
+          },
+          "autorizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "folioInterno": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -298,6 +340,26 @@
             "nullable": true
           },
           "motivo": {
+            "type": "string",
+            "nullable": true
+          },
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "terminal": {
+            "type": "string",
+            "nullable": true
+          },
+          "folioInterno": {
+            "type": "string",
+            "nullable": true
+          },
+          "operador": {
+            "type": "string",
+            "nullable": true
+          },
+          "autorizacion": {
             "type": "string",
             "nullable": true
           }
@@ -314,6 +376,113 @@
           "llavePublica": {
             "type": "string",
             "nullable": true
+          },
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfiguracionPagoBBVA": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hostUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "claveBines": {
+            "type": "string",
+            "nullable": true
+          },
+          "claveSecreta": {
+            "type": "string",
+            "nullable": true
+          },
+          "entornoPruebas": {
+            "type": "boolean"
+          },
+          "tokenUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "hostTimeoutSecs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pinpadTimeoutSeg": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pinpadConexion": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinpadPuertoCom": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinpadBaudRate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pinpadModelo": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinpadBuscadorUsb": {
+            "type": "boolean"
+          },
+          "comercioAfiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "comercioTerminal": {
+            "type": "string",
+            "nullable": true
+          },
+          "comercioMac": {
+            "type": "string",
+            "nullable": true
+          },
+          "comercioDireccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "moto": {
+            "type": "boolean"
+          },
+          "pagoContactLess": {
+            "type": "boolean"
+          },
+          "pagoConTarjeta": {
+            "type": "boolean"
+          },
+          "ventaForzada": {
+            "type": "boolean"
+          },
+          "miniAfiliaciones": {
+            "type": "boolean"
+          },
+          "procesamientoPuntos": {
+            "type": "boolean"
+          },
+          "procesamientoCupones": {
+            "type": "boolean"
+          },
+          "procesamientoCreditos": {
+            "type": "boolean"
+          },
+          "compensacionTms": {
+            "type": "boolean"
+          },
+          "permitirMultiplesHilos": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -322,6 +491,14 @@
         "type": "object",
         "properties": {
           "tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "terminal": {
             "type": "string",
             "nullable": true
           }
@@ -346,20 +523,26 @@
           "motivo": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PostPropinaRequest": {
-        "type": "object",
-        "properties": {
-          "idVenta": {
+          },
+          "referencia": {
             "type": "string",
             "nullable": true
           },
-          "montoPropina": {
-            "type": "number",
-            "format": "double"
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "terminal": {
+            "type": "string",
+            "nullable": true
+          },
+          "folioInterno": {
+            "type": "string",
+            "nullable": true
+          },
+          "operador": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -367,10 +550,6 @@
       "VentaRequest": {
         "type": "object",
         "properties": {
-          "idVenta": {
-            "type": "string",
-            "nullable": true
-          },
           "monto": {
             "type": "number",
             "format": "double"
@@ -379,7 +558,59 @@
             "type": "string",
             "nullable": true
           },
-          "tarjeta": {
+          "numeroTarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaVencimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "cvv": {
+            "type": "string",
+            "nullable": true
+          },
+          "track1": {
+            "type": "string",
+            "nullable": true
+          },
+          "track2": {
+            "type": "string",
+            "nullable": true
+          },
+          "modoLectura": {
+            "type": "string",
+            "nullable": true
+          },
+          "aid": {
+            "type": "string",
+            "nullable": true
+          },
+          "arqc": {
+            "type": "string",
+            "nullable": true
+          },
+          "emv": {
+            "type": "string",
+            "nullable": true
+          },
+          "referencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "operador": {
+            "type": "string",
+            "nullable": true
+          },
+          "afiliacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "terminal": {
+            "type": "string",
+            "nullable": true
+          },
+          "folioInterno": {
             "type": "string",
             "nullable": true
           }
@@ -410,5 +641,19 @@
         "additionalProperties": false
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Configuracion"
+    },
+    {
+      "name": "Pagos"
+    },
+    {
+      "name": "Test"
+    },
+    {
+      "name": "WeatherForecast"
+    }
+  ]
 }

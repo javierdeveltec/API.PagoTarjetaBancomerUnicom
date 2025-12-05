@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|c:\\users\\javier.jimenez\\onedrive - e factor network sa de cv\\documentos\\personal\\develtec\\github\\api.pagotarjetabancomer\\api.pagotarjetabancomer\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|solutionrelative:controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|c:\\users\\javier.jimenez\\onedrive - e factor network sa de cv\\documentos\\personal\\develtec\\github\\api.pagotarjetabancomer\\api.pagotarjetabancomer\\models\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|solutionrelative:models\\request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|c:\\users\\javier.jimenez\\onedrive - e factor network sa de cv\\documentos\\personal\\develtec\\github\\api.pagotarjetabancomer\\api.pagotarjetabancomer\\services\\pagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|solutionrelative:services\\pagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|c:\\users\\javier.jimenez\\onedrive - e factor network sa de cv\\documentos\\personal\\develtec\\github\\api.pagotarjetabancomer\\api.pagotarjetabancomer\\models\\respuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28764E6D-F8CB-4259-BBF2-83B0265BACDA}|API.PagoTarjetaBancomer.csproj|solutionrelative:models\\respuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +26,65 @@
       "DocumentGroups": [
         {
           "DockedHeight": 259,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Request.cs",
+              "DocumentMoniker": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Models\\Request.cs",
+              "RelativeDocumentMoniker": "Models\\Request.cs",
+              "ToolTip": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Models\\Request.cs",
+              "RelativeToolTip": "Models\\Request.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAwDkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T16:51:29.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PagosController.cs",
+              "DocumentMoniker": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Controllers\\PagosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PagosController.cs",
+              "ToolTip": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Controllers\\PagosController.cs",
+              "RelativeToolTip": "Controllers\\PagosController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T16:34:00.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Respuesta.cs",
+              "DocumentMoniker": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Models\\Respuesta.cs",
+              "RelativeDocumentMoniker": "Models\\Respuesta.cs",
+              "ToolTip": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Models\\Respuesta.cs",
+              "RelativeToolTip": "Models\\Respuesta.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwAcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T16:20:11.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PagoService.cs",
+              "DocumentMoniker": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Services\\PagoService.cs",
+              "RelativeDocumentMoniker": "Services\\PagoService.cs",
+              "ToolTip": "C:\\Users\\javier.jimenez\\OneDrive - E FACTOR NETWORK SA DE CV\\Documentos\\Personal\\Develtec\\GitHub\\API.PagoTarjetaBancomer\\API.PagoTarjetaBancomer\\Services\\PagoService.cs",
+              "RelativeToolTip": "Services\\PagoService.cs",
+              "ViewState": "AgIAALsAAAAAAAAAAAAuwL8AAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T16:15:55.92Z"
             }
           ]
         },
